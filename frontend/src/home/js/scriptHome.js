@@ -2,7 +2,8 @@ $(document).ready(function () {
     // Envia o formulário de login com AJAX
   
     $("#bilheteForm").submit(function (event) {
-       
+        $("#cadastrar").prop("disabled", true);
+       var $botao = $("#cadastrar"); 
         event.preventDefault(); 
         var name = $("#nome").val();
         var quantidadeDezenas = $("#quantidadeDezenas").val();
@@ -33,7 +34,7 @@ $(document).ready(function () {
                     $("#quantidadeBilhete").val('');
                   
                     mostrarMensagem("🎉 Bilhete gerado com sucesso!", "#d4edda", "#155724", "#c3e6cb");
-                   
+                    $("#cadastrar").prop("disabled", false);
                 } else {
                   
                     $("#nome").val('');
@@ -41,9 +42,11 @@ $(document).ready(function () {
                     $("#quantidadeBilhete").val('');
                     mostrarMensagem("❌"+data.error ? data.error : "❌ Erro ao gerar bilhete!", "#f8d7da", "#721c24", "#f5c6cb");
                 }
+                $("#cadastrar").prop("disabled", false);
             },
             error: function (xhr, status, error) {
                 mostrarMensagem("❌ Erro ao conectar com a API. Tente novamente.", "#f8d7da", "#721c24", "#f5c6cb");
+                $("#cadastrar").prop("disabled", false);
             }
         });
     });

@@ -22,7 +22,7 @@
                 <label for="quantidadeDezenas">Quantidade de Dezenas:</label>
                 <input type="number" id="quantidadeDezenas" name="quantidadeDezenas" required>
 
-                <button type="submit">Cadastrar</button>
+                <button type="submit" id="cadastrar">Cadastrar</button>
             </form>
             <div id="mensagemSucesso" style="display: none; padding: 10px; background: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; margin-top: 10px;">
                 🎉 Bilhete gerado com sucesso!
