@@ -19,23 +19,22 @@ Containerização: Docker
 Estrutura do Projeto
 
 /
-├── backend/               # Código da API em Node.js
+├── backend/               
 │   ├── src/
 │   │   ├── controllers/
 │   │   ├── models/
-│   │   ├── routes/
 │   │   ├── services/
-│   │   ├── utils/
-│   ├── tests/            # Testes unitários
-├── frontend/              # Código do frontend em PHP
-├── docker-compose.yml     # Configuração do Docker
-├── README.md              # Documentação do projeto
+│   ├── tests/            
+├── frontend/              
+|   ├── src/ 
+├── docker-compose.yml     
+├── README.md              
 
 Como Executar o Projeto
 
 1. Clonar o Repositório
 
-git clone https://github.com/seu-repositorio.git
+git clone https://github.com/projeto-repositorio.git
 cd seu-repositorio
 
 2. Subir os Containers com Docker
@@ -53,6 +52,24 @@ docker-compose up --build
 
 6.  http://localhost:8081/src/sorteio/
 - Realiza o sorteio com base em todos os jogos em aberto. Caso não haja nenhum bilhete cadastrado, o sorteio não será efetuado.
+
+4. Testar a API
+
+A API estará rodando em http://localhost:8080/
+
+Criar bilhete : POST / http://localhost:8080/index.php/api/generate_ticket
+
+{
+    "tripulante": "wagner",
+    "quantidade_dezenas": 5,
+    "quantidade_bilhetes": 6
+}
+
+Listar todos os bilhetes : GET http://localhost:8080/index.php/api/all_bets
+
+Listar todos os bilhetes premiados: GET http://localhost:8080/index.php/api/list_winner
+
+Realizar sorteio: GET http://localhost:8080/index.php/api/drawWinner
 
 O que o Projeto Faz
 
