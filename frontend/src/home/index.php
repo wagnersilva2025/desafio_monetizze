@@ -29,6 +29,6 @@
             </div>
 
         </div>
-        <script src="js/scriptFormGeraBilhete.js"></script>
+        <script src="js/scriptHome.js"></script>
     </body>
 </html>

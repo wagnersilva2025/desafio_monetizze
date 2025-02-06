@@ -24,7 +24,6 @@ class UserController {
         $password = $inputData['password'];
         $response = $this->userService->registerUser($name, $password);
 
-        // Retorna a resposta como JSON
         header('Content-Type: application/json');
         echo json_encode($response);
     }
@@ -45,17 +44,11 @@ class UserController {
         }
         $name = $inputData['name'];
         $password = $inputData['password'];
-        // Chamar o serviço de login
+       
         $result = $this->userService->loginUser($name, $password);
 
-        // Retornar a resposta
         echo json_encode($result);
     }
 }
-/*
-// Executar o Controller
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    (new UserController())->register();
-}
-    */
+
 ?>

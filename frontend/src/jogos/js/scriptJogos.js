@@ -1,33 +1,36 @@
 $(document).ready(function () {
-    // Envia o formulário de login com AJAX
+ 
     getAllBilhetes();
 });
 
 function getAllBilhetes() {
     $.ajax({
-        url: "http://localhost:8080/index.php/api/all_bets", // Atualize com o endpoint correto
+        url: "http://localhost:8080/index.php/api/all_bets", 
         method: "GET",
         dataType: "json",
         success: function (data) {
             console.log('Retorno da API:', data);
 
             if (data.status === 200) {
-                const tabelaBody = $(".tabela tbody"); // Seleciona o <tbody>
-                tabelaBody.empty(); // Limpa o conteúdo da tabela antes de preencher
+                const tabelaBody = $(".tabela tbody"); 
+                tabelaBody.empty(); 
                 $("#tabela").show();
+                let iconePremiado = '';
                 data.data.forEach((bilhete, index) => {
                     let textoPremiado = '';
                     let textoStatus = 'Aguardando';
                    if(bilhete.premiado == 1){
-                    textoStatus = "Bilhete premiado"
+                    textoStatus = "Bilhete premiado";
+                    iconePremiado = '🏆';
                    }
                    if(bilhete.premiado != 1 && bilhete.sorteio_id != null){
-                    textoStatus = "Sorteio efetuado"
+                    textoStatus = "Sorteio efetuado";
+                    iconePremiado = '';
                    }
                     let row = `
                         <tr>
                             <td>${bilhete.id}</td>
-                            <td>${bilhete.dezenas}</td>
+                            <td>${iconePremiado}${bilhete.dezenas}</td>
                             <td>${bilhete.tripulante}</td>
                             <td>${textoStatus}</td>
                         </tr>
@@ -35,7 +38,7 @@ function getAllBilhetes() {
                     tabelaBody.append(row);
                 });
             } else {
-                mostrarMensagem("❌ Nenhum bulhete encotrado.", "#f8d7da", "#721c24", "#f5c6cb");
+                mostrarMensagem("❌ Nenhum bilhete encotrado.", "#f8d7da", "#721c24", "#f5c6cb");
                
             }
         },
@@ -52,7 +55,7 @@ function mostrarMensagem(mensagem, bgColor, textColor, borderColor) {
         "border": `1px solid ${borderColor}`
     }).fadeIn();
 
-    // Esconde a mensagem após 5 segundos
+    
     setTimeout(function () {
         $("#mensagemSucesso").fadeOut();
     }, 3000);

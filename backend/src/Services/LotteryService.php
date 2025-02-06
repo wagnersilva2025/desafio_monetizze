@@ -124,6 +124,7 @@ class LotteryService
 
     public function listBetsPrizeDraw($idsorteio)
     {
+        
         $bilhete = new Bilhete();
         $retorno = $bilhete->listBetsPrizeDraw($idsorteio);
 

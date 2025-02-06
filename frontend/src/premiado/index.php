@@ -26,6 +26,6 @@
                 🎉 Bilhete gerado com sucesso!
             </div>
         </div>
-        <script src="js/scriptFormGeraBilhete.js"></script>
+        <script src="js/scriptPremiado.js"></script>
     </body>
 </html>

@@ -33,6 +33,6 @@
                 🎉 Bilhete gerado com sucesso!
             </div>
         </div>
-        <script src="js/scriptFormGeraBilhete.js"></script>
+        <script src="js/scriptSorteio.js"></script>
     </body>
 </html>

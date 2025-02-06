@@ -8,12 +8,13 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 $(".spinner").hide(); 
+                console.log('id do sorteio aqui ',response.id_sorteio);
                 if (response.status === 200) {
                     let numeros = response.numeros_sorteados.join(", ");
                     let vencedor = response.bilhete_vencedor;
                     let idSorteio = response.id_sorteio
-                    alert(idSorteio);
-                    fromToBets(idSorteio);
+               
+                 
                     let vencedorHTML = `
                         <h2>🏆 Bilhete Premiado 🏆</h2>
                         <p class="numerosSorteados">🎟️ Números Sorteados: ${numeros}</p>
@@ -23,6 +24,7 @@ $(document).ready(function () {
                     `;
 
                     $(".containerData").html(vencedorHTML).fadeIn();
+                    fromToBets(response.id_sorteio);
                 } else {
                     $(".containerData").html(`<h2>Não existe aposta para o sorteio! 🎟️</h2><span><a href="http://localhost:8081/src/home">Gerar Bilhete</a></span>`).fadeIn();
                 }
@@ -37,9 +39,10 @@ $(document).ready(function () {
 });
 
 function fromToBets(idSorteio){
+    console.log('sorteio', idSorteio)
 
     $.ajax({
-        url: "http://localhost:8080/index.php/api/list_bets_prize_draw", // Atualize com o endpoint correto
+        url: "http://localhost:8080/index.php/api/list_bets_prize_draw", 
         method: "POST",
         dataType: "json",
         data: JSON.stringify({
@@ -49,8 +52,8 @@ function fromToBets(idSorteio){
             console.log('Retorno da API:', data);
 
             if (data.status === 200) {
-                const tabelaBody = $(".tabela tbody"); // Seleciona o <tbody>
-                tabelaBody.empty(); // Limpa o conteúdo da tabela antes de preencher
+                const tabelaBody = $(".tabela tbody"); 
+                tabelaBody.empty(); 
                 $("#tabela").show();
     
                 let numeroSorteado = data.data[0].dezenas_sorteada.split(",").map(num => num.trim());
@@ -69,7 +72,7 @@ function fromToBets(idSorteio){
                    let dezenasHTML = numeroBilhete.map(num => {
                     let classe = numeroSorteado.includes(num) ? "sorteado" : "naosorteado";
                     return `<span class="${classe}">${num}</span>`;
-                    }).join(", "); // Junta os spans separados por vírgula
+                    }).join(", "); 
                     let row = `
                         <tr>
                             <td>${bilhete.id}</td>
@@ -81,7 +84,7 @@ function fromToBets(idSorteio){
                     tabelaBody.append(row);
                 });
             } else {
-                mostrarMensagem("❌ Nenhum bulhete encotrado.", "#f8d7da", "#721c24", "#f5c6cb");
+                alert("Nenhum bilhete encotrado.");
                
             }
         },

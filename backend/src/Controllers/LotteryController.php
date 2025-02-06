@@ -13,6 +13,7 @@ class LotteryController
 
     public function generateTicket()
     {
+       
         $inputData = json_decode(file_get_contents("php://input"), true);
         if (!isset($inputData['tripulante']) || !isset($inputData['quantidade_dezenas']) || !isset($inputData['quantidade_bilhetes'])) {
             header("HTTP/1.1 400 Bad Request");
