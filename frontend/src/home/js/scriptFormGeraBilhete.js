@@ -26,12 +26,12 @@ $(document).ready(function () {
             }),
             success: function (data) {
              
-                console.log('Retorno da api',data);
+                console.log(data.error)
                 if (data.status === 200) {
                     $("#nome").val('');
                     $("#quantidadeDezenas").val('');
                     $("#quantidadeBilhete").val('');
-
+                  
                     mostrarMensagem("🎉 Bilhete gerado com sucesso!", "#d4edda", "#155724", "#c3e6cb");
                    
                 } else {
@@ -39,12 +39,31 @@ $(document).ready(function () {
                     $("#nome").val('');
                     $("#quantidadeDezenas").val('');
                     $("#quantidadeBilhete").val('');
+                    mostrarMensagem("❌"+data.error ? data.error : "❌ Erro ao gerar bilhete!", "#f8d7da", "#721c24", "#f5c6cb");
                 }
             },
             error: function (xhr, status, error) {
                 mostrarMensagem("❌ Erro ao conectar com a API. Tente novamente.", "#f8d7da", "#721c24", "#f5c6cb");
             }
         });
+    });
+
+    $("#quantidadeBilhete").on("change", function () {
+        let valor = parseInt($(this).val());
+
+        if (valor < 1 || valor > 50) {
+            mostrarMensagem("❌ A quantidade deve ser entre 1 e 50.", "#f8d7da", "#721c24", "#f5c6cb");
+            $("#quantidadeBilhete").val('');
+        }
+    });
+
+    $("#quantidadeDezenas").on("change", function () {
+        let valor = parseInt($(this).val());
+
+        if (valor < 6 || valor > 10) {
+            mostrarMensagem("❌ A quantidade deve ser entre 6 e 10.", "#f8d7da", "#721c24", "#f5c6cb");
+            $("#quantidadeDezenas").val('');
+        }
     });
 });
 

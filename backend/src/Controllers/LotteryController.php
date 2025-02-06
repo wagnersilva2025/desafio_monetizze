@@ -55,5 +55,22 @@ class LotteryController
         echo json_encode($results);
     }
 
+    public function listBetsPrizeDraw(){
+        $inputData = json_decode(file_get_contents("php://input"), true);
+        if (!isset($inputData['idsorteio'])) {
+            header("HTTP/1.1 400 Bad Request");
+            echo json_encode(["error" => "Dados ausentes ou inválidos."]);
+            return;
+        }
+
+        $idsorteio = $inputData['idsorteio'];
+      
+        $results = $this->lotteryService->listBetsPrizeDraw($idsorteio);
+
+        echo json_encode($results);
+    }
+
+    
+
 }
 ?>

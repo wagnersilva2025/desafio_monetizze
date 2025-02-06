@@ -47,7 +47,11 @@ switch ($uri) {
     case '/api/list_winner':
         $controller = new LotteryController();
         $controller->listWinner();
-            break;
+        break;
+    case '/api/list_bets_prize_draw':
+        $controller = new LotteryController();
+        $controller->listBetsPrizeDraw();
+        break;
     default:
         header("HTTP/1.1 404 Not Found");
         echo json_encode(["error" => "Rota não encontrada."]);

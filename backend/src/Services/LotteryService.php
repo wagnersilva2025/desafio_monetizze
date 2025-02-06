@@ -11,6 +11,9 @@ class LotteryService
         if ($quantidadeBilhetes > 50) {
             return ["error" => "Você não pode gerar mais de 50 bilhetes."];
         }
+        if ($quantidadeDezenas > 10) {
+            return ["error" => "Você não pode gerar mais de 10 Números."];
+        }
 
         $tickets = [];
         for ($i = 0; $i < $quantidadeBilhetes; $i++) {
@@ -70,7 +73,7 @@ class LotteryService
    
     public function drawWinner()
     {
-        // Buscar todos os bilhetes cadastrados
+     
         $bilheteModel = new Bilhete();
         $bilhetes = $bilheteModel->getAllLotteryDrawWinner();
     
@@ -80,15 +83,13 @@ class LotteryService
     
         $bilhetePremiado = null;
         while (!$bilhetePremiado) {
-            // Escolher um bilhete aleatório para definir os números do sorteio
+           
             $bilheteSorteado = $bilhetes[array_rand($bilhetes)];
             $dezenasBilhete = explode(',', $bilheteSorteado['dezenas']);
     
-            // Sortear 6 números a partir desse bilhete
             shuffle($dezenasBilhete);
             $numerosSorteados = array_slice($dezenasBilhete, 0, 6);
     
-            // Verificar se algum outro bilhete contém pelo menos 6 desses números
             foreach ($bilhetes as $bilhete) {
                 $dezenasBilheteCheck = explode(',', $bilhete['dezenas']);
                 $matchCount = count(array_intersect($numerosSorteados, $dezenasBilheteCheck));
@@ -100,7 +101,6 @@ class LotteryService
             }
         }
     
-        // Salvar o bilhete premiado
         $bilhetePremiadoModel = new BilhetePremiado();
         $retornoId = $bilhetePremiadoModel->saveWinner($bilhetePremiado['id'], implode(',', $numerosSorteados));
         $bilheteModel->updateBilhete($bilhetePremiado['id'], $retornoId);
@@ -110,29 +110,28 @@ class LotteryService
             'status' => 200,
             'success' => 'Bilhete premiado encontrado!',
             'numeros_sorteados' => $numerosSorteados,
-            'bilhete_vencedor' => $bilhetePremiado
+            'bilhete_vencedor' => $bilhetePremiado,
+            'id_sorteio' => $retornoId
         ];
     }
     
 
-private function generateFromExistingNumbers($numerosDisponiveis, $quantidade)
-{
-    shuffle($numerosDisponiveis); // Mistura os números
-    return array_slice($numerosDisponiveis, 0, $quantidade); // Pega os primeiros 6 números
-}
-
-    /*
-    private function addExtraNumber($numerosSorteados)
+    private function generateFromExistingNumbers($numerosDisponiveis, $quantidade)
     {
-        do {
-            $novoNumero = rand(1, 60);
-        } while (in_array($novoNumero, $numerosSorteados));
-
-        $numerosSorteados[] = $novoNumero;
-        sort($numerosSorteados);
-
-        return $numerosSorteados;
+        shuffle($numerosDisponiveis); 
+        return array_slice($numerosDisponiveis, 0, $quantidade); 
     }
-        */
+
+    public function listBetsPrizeDraw($idsorteio)
+    {
+        $bilhete = new Bilhete();
+        $retorno = $bilhete->listBetsPrizeDraw($idsorteio);
+
+        if (!empty($retorno)) {
+            return ['status' => 200, 'data' => $retorno];
+        }
+
+        return ['status' => 400, 'error' => 'Nenhum bilhete encontrado!'];
+    }
 }
 ?>

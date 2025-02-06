@@ -106,5 +106,29 @@ class Bilhete
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function listBetsPrizeDraw($idSorteio)
+    {
+        $stmt = $this->conn->prepare("SELECT
+                                        bilhetes.id,
+                                        bilhetes.tripulante,
+                                        bilhetes.quantidade_dezenas,
+                                        bilhetes.data_geracao,
+                                        bilhetes.data_sorteio,
+                                        bilhetes.premiado,
+                                        bilhetes.sorteio_id,
+                                        bilhetes_dezenas.dezenas,
+                                        bilhete_premiado.dezenas as dezenas_sorteada
+                                        FROM
+                                        bilhetes
+                                        INNER JOIN bilhetes_dezenas ON bilhetes.id = bilhetes_dezenas.bilhete_id
+                                        INNER JOIN bilhete_premiado ON bilhetes.sorteio_id = bilhete_premiado.id
+                                        WHERE
+                                        bilhetes.sorteio_id = $idSorteio
+                                    ");
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
 ?>

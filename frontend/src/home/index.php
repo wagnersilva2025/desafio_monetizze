@@ -17,10 +17,10 @@
                 <input type="text" id="nome" name="nome" required>
 
                 <label for="quantidadeBilhete">Quantidade de Bilhetes:</label>
-                <input type="number" id="quantidadeBilhete" name="quantidadeBilhete" min="1" required>
+                <input type="number" id="quantidadeBilhete" name="quantidadeBilhete" required>
 
                 <label for="quantidadeDezenas">Quantidade de Dezenas:</label>
-                <input type="number" id="quantidadeDezenas" name="quantidadeDezenas" min="1" required>
+                <input type="number" id="quantidadeDezenas" name="quantidadeDezenas" required>
 
                 <button type="submit">Cadastrar</button>
             </form>

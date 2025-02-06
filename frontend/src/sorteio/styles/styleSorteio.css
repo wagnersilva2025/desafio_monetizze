@@ -89,6 +89,80 @@ button:hover {
     margin-top: 10px;
 }
 
+.containerTable {
+    width: 80%;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.tabela th,
+.tabela td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.tabela th {
+    background-color: #0056b3;
+    color: white;
+}
+
+.tabela td {
+    background-color: #f9f9f9;
+}
+
+.tabela tr:nth-child(even) td {
+    background-color: #f1f1f1;
+}
+
+.action-btn {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+    background-color: #00408d;
+}
+
+.sorteado {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: green;
+    border-radius: 50%;
+    margin: 2px;
+}
+
+.naosorteado {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    margin: 2px;
+}
+
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
