@@ -26,7 +26,7 @@ $(document).ready(function () {
                     $(".containerData").html(vencedorHTML).fadeIn();
                     fromToBets(response.id_sorteio);
                 } else {
-                    $(".containerData").html(`<h2>Não existe aposta para o sorteio! 🎟️</h2><span><a href="http://localhost:8081/src/home">Gerar Bilhete</a></span>`).fadeIn();
+                    $(".containerData").html(`<h2>Não há apostas para o sorteio! 🎟️</h2><span><a href="http://localhost:8081/src/home">Gerar Bilhete</a></span>`).fadeIn();
                 }
             },
             error: function () {

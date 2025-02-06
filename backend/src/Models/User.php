@@ -24,7 +24,6 @@ class User {
         $stmt->bindParam(":name", $name);
         $stmt->execute();
         
-        // If count > 0, the user exists
         return $stmt->fetchColumn() > 0;
     }
 
@@ -33,7 +32,7 @@ class User {
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":name", $name);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);  // Retorna os dados do usuário
+        return $stmt->fetch(PDO::FETCH_ASSOC);  
     }
     
 }

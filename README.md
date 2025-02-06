@@ -83,3 +83,11 @@ O que o Projeto NÃO Faz
 ❌ Não suporta múltiplos sorteios simultâneos (ainda)
 ❌ Não tem sistema de login/administração
 
+Agradecimento Especial! 🎉
+
+Gostaria de agradecer imensamente a cada um de vocês por participar deste desafio. Foi uma experiência incrível compartilhar este momento.
+Independentemente dos resultados, o mais importante é o aprendizado adquirido e as novas habilidades desenvolvidas ao longo dessa jornada. Todos nós crescemos com a experiência, e é isso que torna esses desafios tão valiosos.
+Obrigado e espero que este desafio seja apenas o começo de muitos outros sucessos que estão por vir.
+
+Muito obrigado a todos! 💪🚀
+
